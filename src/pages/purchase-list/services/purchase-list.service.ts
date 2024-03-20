@@ -1,6 +1,6 @@
 import { Dispatch, UnknownAction } from "redux"
 import { addPurchaseList } from "../../../features/purchase-list/purchase-list-slice"
-import { AsyncStorageInterface } from "../../../async-storage"
+import { AsyncStorageService } from "../../../async-storage"
 
 interface PurchaseListServiceProps {
   dispatch: Dispatch<UnknownAction>
@@ -8,6 +8,9 @@ interface PurchaseListServiceProps {
 
 export const PurchaseListService = (props: PurchaseListServiceProps) => {
   const { dispatch } = props
+
+  const { setItemWithReplace } = AsyncStorageService()
+
   const saveNewList = async (title: string) => {
 
     if (!title) return
@@ -20,12 +23,8 @@ export const PurchaseListService = (props: PurchaseListServiceProps) => {
     }
 
     dispatch(addPurchaseList(newList))
+    setItemWithReplace({ collectionKey: '@todo:list', data: newList })
 
-    await AsyncStorageInterface({
-      method: 'setItemWithReplace',
-      collectionKey: '@todo:list',
-      data: newList
-    })
   }
   return {
     saveNewList

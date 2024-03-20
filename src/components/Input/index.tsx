@@ -26,6 +26,7 @@ const Label = styled.Text`
 `
 
 const InputStyle = styled.TextInput.attrs(({ theme }) => ({
+  selectionColor: theme.primary.main,
   placeholderTextColor: theme.gray[100],
 }))`
   width: 100%;

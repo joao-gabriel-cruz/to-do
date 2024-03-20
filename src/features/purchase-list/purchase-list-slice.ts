@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { Sale } from '../../@types/sale'
 import { Action } from '../../@types'
-import { AsyncStorageInterface } from '../../async-storage'
+import { AsyncStorageService } from '../../async-storage'
 
 
 export interface ListSaleState {
@@ -20,14 +20,18 @@ export const listSaleSlice = createSlice({
     addPurchaseList: (state, action: Action<Sale>) => {
       state.list.push(action.payload)
     },
+
+    initialList: (state, action: Action<Sale[]>) => {
+      state.list = action.payload
+    }
   }
 })
 
-export const getAsyncList = async () => {
-  const data = await AsyncStorageInterface({
-    method: 'getItem',
-    collectionKey: '@todo:list'
-  })
+export const getAsyncList = async (dispatch: any, getState: any) => {
+  const { getItem } = AsyncStorageService()
+  const data = await getItem('@todo:list')
+
+  dispatch(listSaleSlice.actions.initialList(data))
 }
 
 export const { addPurchaseList } = listSaleSlice.actions

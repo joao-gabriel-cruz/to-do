@@ -6,48 +6,53 @@ interface IAsyncStorageInterface {
   data?: any
 }
 
-const AsyncStorageService = async ({ }: IAsyncStorageInterface) => {
-  const setItemWithReplace = () => { }
+type CollectionKey = '@todo:list'
+
+interface SetItemWithReplaceProps {
+  collectionKey: CollectionKey
+  data: any
 }
 
-export const AsyncStorageInterface = async ({
-  method,
-  collectionKey,
-  data,
-}: IAsyncStorageInterface) => {
-  try {
-    switch (method) {
-      case 'setItemWithReplace':
-        let resultStorage = await AsyncStorage.getItem(collectionKey)
+export const AsyncStorageService = () => {
+  const setItemWithReplace = async (props: SetItemWithReplaceProps) => {
+    const { collectionKey, data } = props
 
-        resultStorage = resultStorage ? JSON.parse(resultStorage) : []
+    let resultStorage = await AsyncStorage.getItem(collectionKey)
 
-        let dataString = resultStorage
-          ? JSON.stringify([data, ...resultStorage!])
-          : JSON.stringify([data])
+    resultStorage = resultStorage ? JSON.parse(resultStorage) : []
 
-        await AsyncStorage.setItem(collectionKey, dataString!)
-        break
-      case 'getItem':
+    let dataString = resultStorage
+      ? JSON.stringify([data, ...resultStorage!])
+      : JSON.stringify([data])
 
-        const result = await AsyncStorage.getItem(collectionKey)
+    await AsyncStorage.setItem(collectionKey, dataString!)
+  }
 
-        return JSON.parse(result || '[]')
-      case 'removeItem':
+  const getItem = async (collectionKey: CollectionKey) => {
+    const result = await AsyncStorage.getItem(collectionKey)
 
-        await AsyncStorage.removeItem(collectionKey)
-        break
-      case 'setItem':
+    return JSON.parse(result || '[]')
+  }
 
-        await AsyncStorage.setItem(collectionKey, JSON.stringify(data))
-        break
-      case 'clear':
+  const removeItem = async (collectionKey: CollectionKey) => {
+    await AsyncStorage.removeItem(collectionKey)
+  }
 
-        await AsyncStorage.multiRemove([
-          '@todo:list',
-        ])
-    }
-  } catch (error) {
-    throw error
+  const setItem = async (collectionKey: CollectionKey, data: any) => {
+    await AsyncStorage.setItem(collectionKey, JSON.stringify(data))
+  }
+
+  const clear = async () => {
+    await AsyncStorage.multiRemove([
+      '@todo:list',
+    ])
+  }
+
+  return {
+    setItemWithReplace,
+    getItem,
+    removeItem,
+    setItem,
+    clear,
   }
 }

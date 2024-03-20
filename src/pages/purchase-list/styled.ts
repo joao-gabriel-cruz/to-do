@@ -70,6 +70,7 @@ export const ContainerList = styled.TouchableOpacity.attrs({
   background-color: ${({ theme }) => theme.gray[400]};
   border: 1px solid ${({ theme }) => theme.gray[300]};
   border-radius: 6px;
+  margin-bottom: 10px;
 `
 
 export const TextList = styled.Text`
