@@ -25,6 +25,11 @@ export const ContainerForm = styled.View`
   justify-content: center;
 `
 
+export const BoxAmount = styled.View`
+  width: 100%;
+  flex-direction: row;
+`
+
 export const ListProduct = styled(FlatList<Product>)`
  flex: 1;
 `
@@ -36,8 +41,9 @@ export const TextEmpty = styled.Text`
 `
 
 export const DropdownContainer = styled(Picker)`
-  width: 100%;
+  width: 20%;
   height: 40px;
+  background-color: aliceblue;
   background-color: ${({ theme }) => theme.gray[300]};
   border-radius: 5px;
   margin-top: 5px;

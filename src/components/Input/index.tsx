@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 
 export interface InputProps extends TextInputProps {
   label: string
+  width?: string
 }
 
 export const Input = (props: InputProps) => {
@@ -28,8 +29,12 @@ interface InputStyleProps {
   isFocused: boolean
 }
 
-const ContainerInput = styled.View`
-  width: 100%;
+interface ContainerInputProps {
+  width?: string
+}
+
+const ContainerInput = styled.View<ContainerInputProps>`
+  width: ${({ width }) => width || '100%'};
 `
 
 const Label = styled.Text<InputStyleProps>`

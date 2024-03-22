@@ -1,5 +1,6 @@
 import { Text, View } from 'react-native'
 import {
+  BoxAmount,
   Container,
   ContainerForm,
   DropdownContainer,
@@ -22,17 +23,17 @@ export const Purchase = () => {
       <Title>{purchase.title}</Title>
       <ContainerForm>
         <Input label="Nome do produto" />
-        <Input keyboardType="numeric" label="Quantidade" />
-        <DropdownContainer
-          style={{ width: '100%', height: 40 }}
-          selectedValue={selectedLanguage}
-          onValueChange={(itemValue, itemIndex) => {}}
-        >
-          <Picker.Item label="Selecione uma categoria" value="0" />
-          <Picker.Item label="Alimento" value="1" />
-          <Picker.Item label="Higiene" value="2" />
-          <Picker.Item label="Limpeza" value="3" />
-        </DropdownContainer>
+        <BoxAmount>
+          <Input width="50%" keyboardType="numeric" label="Quantidade" />
+          <DropdownContainer
+            selectedValue={selectedLanguage}
+            onValueChange={(itemValue, itemIndex) => {}}
+          >
+            <Picker.Item label="Selecione uma categoria" value="0" />
+            <Picker.Item label="KG" value="1" />
+            <Picker.Item label="UN" value="2" />
+          </DropdownContainer>
+        </BoxAmount>
       </ContainerForm>
       <ListProduct
         data={purchase.products}
