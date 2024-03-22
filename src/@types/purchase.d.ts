@@ -5,7 +5,7 @@ export type Product = {
   category: string
 }
 
-export type Sale = {
+export type Purchase = {
   products: Product[]
   total: number
   date: string

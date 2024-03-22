@@ -44,6 +44,8 @@ export const themeDark = {
     green_dark: '#1C2015',
     blue: '#7B94CB',
     blue_dark: '#1A1D23',
+    red: '#C55A5A',
+    red_dark: '#1F1A1A',
   },
 
   fonts: {

@@ -22,8 +22,6 @@ export const PurchaseListService = (props: PurchaseListServiceProps) => {
       total: 0
     }
 
-    dispatch(addPurchaseList(newList))
-    setItemWithReplace({ collectionKey: '@todo:list', data: newList })
 
   }
   return {

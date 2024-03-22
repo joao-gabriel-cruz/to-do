@@ -1,8 +1,8 @@
 import { FlatList } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
-import { Sale } from "../../@types/sale";
-import { ListSaleState } from "../../features/purchase-list/purchase-list-slice";
+import { Purchase } from "../../@types/purchase";
+
 
 export const Container = styled.View`
   flex: 1;
@@ -47,7 +47,7 @@ export const BoxForm = styled.View`
   flex-direction: row;
 `
 
-export const List = styled(FlatList<Sale>)`
+export const List = styled(FlatList<Purchase>)`
   width: 100%;
   flex: 1;
 `
@@ -56,36 +56,4 @@ export const TextEmpty = styled.Text`
   font-size: ${({ theme }) => theme.fonts.md}px;
   color: ${({ theme }) => theme.gray[100]};
   text-align: center;
-`
-
-export const ContainerList = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.7,
-  containerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})`
-  width: 100%;
-  padding: 20px;
-  background-color: ${({ theme }) => theme.gray[400]};
-  border: 1px solid ${({ theme }) => theme.gray[300]};
-  border-radius: 6px;
-  margin-bottom: 10px;
-`
-
-export const TextList = styled.Text`
-  width: 100%;
-  font-size: ${({ theme }) => theme.fonts.md}px;
-  color: ${({ theme }) => theme.gray[100]};
-`
-
-export const TextTotal = styled.Text`
-width:  100%;
-  font-size: ${({ theme }) => theme.fonts.md}px;
-  color: ${({ theme }) => theme.gray[200]};
-`
-
-export const TextValue = styled.Text`
-  font-size: ${({ theme }) => theme.fonts.md}px;
-  color: ${({ theme }) => theme.generic_colors.green};
 `

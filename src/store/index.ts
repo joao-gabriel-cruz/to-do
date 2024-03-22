@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import purchaseListSlice from '../features/purchase-list/purchase-list-slice'
+import purchaseSlice from '../features/purchase/purchase-slice'
 
 export const store = configureStore({
   reducer: {
-    purchaseListSlice
+    purchaseListSlice,
+    purchaseSlice
   }
 })
 
